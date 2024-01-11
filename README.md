@@ -28,7 +28,7 @@ approaches.
 ```bash
 conda create --name r2s_schedules python=3.8
 conda activate r2s_schedules
-pip install -r requirements
+pip install -r requirements.txt
 ```
 
 ## Running the code
