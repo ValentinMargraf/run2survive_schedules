@@ -19,17 +19,21 @@ further and allows selecting a schedule of algorithms instead of a single algori
 even more potential for improvement. In this work, we propose a novel algorithm scheduling method, called
 RunAndSchedule2Survive, leveraging the inherently probabilistic nature of the state-of-the-art algorithm
 selection approach Run2Survive to compute well-performing schedules. In an extensive experimental study on
-the de-facto standard benchmark for algorithm selection and scheduling, we demonstrate that RunAndSched-
-ule2Survive achieves best performance in 21 out of 25 benchmark scenarios over the hitherto state-of-the-art
+the de-facto standard benchmark for algorithm selection and scheduling, we demonstrate that RunAndSchedule2Survive achieves best performance in 21 out of 25 benchmark scenarios over the hitherto state-of-the-art
 approaches.
 
 ## Setup
 
 ```bash
-conda create --name r2s_schedules python=3.8
+conda create --name r2s_schedules python=3.7
 conda activate r2s_schedules
 pip install -r requirements.txt
 ```
 
+
 ## Running the code
-The relevant code of our implementation is contained in the file run_schedule2.py
+The relevant code of our implementation is contained in the file run_schedule2.py, simply execute
+
+```bash
+python run_schedule2.py
+```
