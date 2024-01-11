@@ -3,8 +3,6 @@ import sys
 import configparser
 import multiprocessing as mp
 
-import matplotlib.pyplot as plt
-from joblib import Parallel, delayed
 import pandas as pd
 import numpy as np
 import database_utils
