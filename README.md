@@ -23,7 +23,7 @@ the de-facto standard benchmark for algorithm selection and scheduling, we demon
 approaches.
 
 ## ASLib Data
-Download the ASlib data from 'https://github.com/coseal/aslib_data/tree/master' and place the scenarios into the directory named aslib_data.
+Download the ASlib data from **https://github.com/coseal/aslib_data/tree/master** and place the scenarios into the directory named aslib_data.
 
 ## Setup
 1. Ensure that CMake is installed on your machine.
@@ -36,10 +36,10 @@ pip install -r requirements.txt
 ```
 
 ## Running the code
-The relevant code for our implementation is in the file 'run_schedule.py'. Execute the following command:
+The relevant code for our implementation is in the file **run_schedule.py**. Assuming, your Conda environment is activated, execute the following command:
 
 ```bash
 python run_schedule.py
 
 ```
-This script runs over all scenarios, folds, train-test splits, and calculates the PAR10 score. The results will be averaged for each scenario over all 10 folds, normalized, and saved as 'r2ss_normalized_par_10.csv' in the '/results' folder.
+This script runs over all scenarios, folds, train-test splits, and calculates the PAR10 score. The results will be averaged for each scenario over all 10 folds, normalized, and saved as **r2ss_normalized_par_10.csv** in the **/results** folder.
