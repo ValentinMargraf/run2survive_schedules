@@ -1,7 +1,7 @@
 # Code for paper: "RunAndSchedule2Survive: Algorithm Scheduling Based on Run2Survive"
 
 This repository contains code for the paper "RunAndSchedule2Survive: Algorithm Scheduling Based on
-Run2Survive". We leverage Run2Survive runtime distributions to construct algorithm schedules.
+Run2Survive". This code leverages Run2Survive runtime distributions to construct algorithm schedules.
 
 
 ## Abstract
@@ -22,7 +22,12 @@ selection approach Run2Survive to compute well-performing schedules. In an exten
 the de-facto standard benchmark for algorithm selection and scheduling, we demonstrate that RunAndSchedule2Survive achieves best performance in 21 out of 25 benchmark scenarios over the hitherto state-of-the-art
 approaches.
 
+## ASLib Data
+Download the ASlib data from 'https://github.com/coseal/aslib_data/tree/master' and place the scenarios into the directory named aslib_data.
+
 ## Setup
+1. Ensure that CMake is installed on your machine.
+2. Create a Conda environment using Python 3.7 and install the required libraries:
 
 ```bash
 conda create --name r2s_schedules python=3.7
@@ -30,10 +35,11 @@ conda activate r2s_schedules
 pip install -r requirements.txt
 ```
 
-
 ## Running the code
-The relevant code of our implementation is contained in the file run_schedule2.py, simply execute
+The relevant code for our implementation is in the file 'run_schedule.py'. Execute the following command:
 
 ```bash
-python run_schedule2.py
+python run_schedule.py
+
 ```
+This script runs over all scenarios, folds, train-test splits, and calculates the PAR10 score. The results will be averaged for each scenario over all 10 folds, normalized, and saved as 'r2ss_normalized_par_10.csv' in the '/results' folder.

@@ -11,5 +11,4 @@ oppoppopinit==1.2.0
 geneticalgorithm2==6.5.1
 scikit-learn==0.21.3
 numpy==1.17.4
-mysql-connector-python==8.0.18
 scikit-survival==0.11

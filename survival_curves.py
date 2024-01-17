@@ -27,7 +27,7 @@ def create_survival_curves(scenario: ASlibScenario, instance_id: int=None, fold:
     algorithm_cutoff_time = train_scenario.algorithm_cutoff_time
     features_train = train_scenario.feature_data.to_numpy()
     performances = train_scenario.performance_data.to_numpy()
-
+    print("now into params")
     # Might be set as a parameter in a later state of this elaboration
     params = {
         'n_estimators': 100,
@@ -38,22 +38,27 @@ def create_survival_curves(scenario: ASlibScenario, instance_id: int=None, fold:
         'bootstrap': True,
         'oob_score': False
     }
-
+    print("create model structure")
     models = create_model_structure(num_algorithms, fold, params)
     imputer = [SimpleImputer() for _ in range(num_algorithms)]
     scaler = [StandardScaler() for _ in range(num_algorithms)]
-
+    print("model structure created")
     for alg_id in range(num_algorithms):
+        print("fit alg with id ", alg_id, "/",num_algorithms)
         # prepare survival forest dataset and split the data accordingly
         X_train, Y_train = construct_dataset_for_algorithm_id(
             features_train, performances, alg_id, algorithm_cutoff_time)
         X_train = imputer[alg_id].fit_transform(features_train)
         X_train = scaler[alg_id].fit_transform(X_train)
+        #X_train = X_train[:2]
+        #Y_train = Y_train[:2]
         models[alg_id].fit(X_train, Y_train)
 
     ##### Predict Survival Functions and respective Risks #####
     all_event_times, all_survival_functions = [], []
+    print("Predict Survival Functions and respective Risks")
     for instance_idx in range(len(test_scenario.feature_data.to_numpy())):
+        print("instance_idx: ", instance_idx,"/",(len(test_scenario.feature_data.to_numpy())))
         features_test = test_scenario.feature_data.to_numpy()[instance_idx]
         event_times, survival_functions = [], []
         for alg_id in range(num_algorithms):
