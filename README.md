@@ -23,7 +23,7 @@ the de-facto standard benchmark for algorithm selection and scheduling, we demon
 approaches.
 
 ## ASLib Data
-Download the ASlib data from **https://github.com/coseal/aslib_data/tree/master** and place the scenarios into the directory named aslib_data.
+Download the ASlib data from **https://github.com/coseal/aslib_data/tree/master** and place the scenarios into a directory named aslib_data. (Or just simply execute **git clone https://github.com/coseal/aslib_data.git** and the folder with the files will be downloaded into the root directory.)
 
 ## Setup
 1. Ensure that CMake is installed on your machine.
