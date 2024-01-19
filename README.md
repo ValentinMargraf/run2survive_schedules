@@ -42,4 +42,14 @@ The relevant code for our implementation is in the file **run_schedule.py**. Ass
 python run_schedule.py
 
 ```
-This script runs over all scenarios, folds, train-test splits, and calculates the PAR10 score. The results will be averaged for each scenario over all 10 folds, normalized, and saved as **r2ss_normalized_par_10.csv** in the **/results** folder.
+This script runs over all scenarios, folds, train-test splits, and calculates the PAR10 score. The results will be saved as **r2ss_par_10.csv** in the **/results** folder.
+
+## Generate Table 2
+In the results **/results** folder, you'll find a CSV file named **sbs_vbs_results.csv**, containing the results of the SBS and VBS. To create Table 2 of the paper, showcasing the averaged and normalized PAR10 scores along with their standard deviations, execute the following commands.
+
+```bash
+python normalize_par_10.py
+python generate_results_table.py
+
+```
+The Python script will leverage the pandas library to convert the dataframe into LaTeX table format using the method to_latex(), and the result will be printed.

@@ -227,6 +227,6 @@ if __name__ == "__main__":
                 df = df.append(row_dict, ignore_index=True)
 
 
-                df.to_csv("results/r2ss_normalized_par_10.csv", index=False)
+                df.to_csv("results/r2ss_par_10.csv", index=False)
 
         #exit(0)
