@@ -20,10 +20,6 @@ import optimization as survopt
 import traceback
 
 
-logger = logging.getLogger("run")
-logger.addHandler(logging.StreamHandler())
-
-
 
 
 def create_approach(approach_names):
@@ -191,42 +187,42 @@ def func(approach_names, scenario, fold, amount_of_scenario_training_instances, 
 #         MAIN        #
 #######################
 if __name__ == "__main__":
-
+    import os
     amount_of_cpus_to_use = 1
-    #scenarios = ["ASP-POTASSCO", "BNSL-2016", "CPMP-2015", "CSP-2010", "GRAPHS-2015", "MAXSAT-PMS-2016", "MAXSAT-WPMS-2016", "MAXSAT12-PMS", "MAXSAT15-PMS-INDU", "MIP-2016", "PROTEUS-2014", "QBF-2011", "QBF-2014", "QBF-2016", "SAT03-16_INDU", "SAT11-HAND", "SAT11-INDU", "SAT11-RAND", "SAT12-ALL", "SAT12-HAND", "SAT12-INDU", "SAT12-RAND", "SAT15-INDU", "TSP-LION2015", "TSP-LION2015-ALGO"]
-    scenarios = ["ASP-POTASSCO"]#, "BNSL-2016", "CPMP-2015"]
+    scenarios = ["ASP-POTASSCO", "BNSL-2016", "CPMP-2015", "CSP-2010", "GRAPHS-2015", "MAXSAT-PMS-2016", "MAXSAT-WPMS-2016", "MAXSAT12-PMS", "MAXSAT15-PMS-INDU", "MIP-2016", "PROTEUS-2014", "QBF-2011", "QBF-2014", "QBF-2016", "SAT03-16_INDU", "SAT11-HAND", "SAT11-INDU", "SAT11-RAND", "SAT12-ALL", "SAT12-HAND", "SAT12-INDU", "SAT12-RAND", "SAT15-INDU", "TSP-LION2015", "TSP-LION2015-ALGO"]
+    #scenarios = ["ASP-POTASSCO"]#, "BNSL-2016", "CPMP-2015"]
     approach_names = ["schedule"]
     amount_of_scenario_training_instances = int(-1)
     tune_hyperparameters = bool(int(0))
+
+
+    file_name = "results/r2ss_par_10.csv"
+    # Check if the file exists
+    if os.path.isfile(file_name):
+        # Load the existing DataFrame
+        df = pd.read_csv(file_name)
+        print("existing file was loaded")
+    else:
+        names = ['scenario_name', 'fold', 'approach', 'metric', 'result']
+        df = pd.DataFrame(columns=names)
 
     for scenario_name in scenarios:
         scenario = ASlibScenario()
         scenario.read_scenario('aslib_data/' + scenario_name)
         print_stats_of_scenario(scenario)
-        names = ['scenario_name', 'fold', 'approach', 'metric', 'result']
 
         for fold in range(1, 11):
             results = func(approach_names, scenario, fold, amount_of_scenario_training_instances, tune_hyperparameters)
-            try:
-                df = pd.read_csv("df.csv")
-            except:
 
-                df = pd.DataFrame(columns=names)
-
-            print("DF before results ", df)
 
             for res in results:
 
 
                 values = [scenario.scenario, fold, res[0], res[1], str(res[2])]
                 print("VALUE ", values)
-                # Create a dictionary from column names and data
-                row_dict = dict(zip(names, values))
 
-                # Append the new row to the DataFrame
-                df = df.append(row_dict, ignore_index=True)
-
-
+                df = df.append(
+                        {'scenario_name': scenario.scenario, 'fold': fold, 'approach': res[0], 'metric': res[1], 'result':str(res[2])},
+                        ignore_index=True)
                 df.to_csv("results/r2ss_par_10.csv", index=False)
 
-        #exit(0)
